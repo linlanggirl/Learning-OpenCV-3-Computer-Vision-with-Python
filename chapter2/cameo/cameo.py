@@ -1,3 +1,4 @@
+# 打开摄像头
 import cv2
 from managers import WindowManager, CaptureManager
 
