@@ -1,5 +1,5 @@
 import cv2
-# 视频文件的读和写发
+# 视频文件的读和写
 # 读取AVI文件的帧，并采用YUV颜色编码将其写入另一个帧中
 videoCapture = cv2.VideoCapture('MyInputVid.avi')
 fps = videoCapture.get(cv2.CAP_PROP_FPS)
