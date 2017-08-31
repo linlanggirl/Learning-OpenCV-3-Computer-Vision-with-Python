@@ -1,7 +1,7 @@
 import cv2
 import numpy
 import os
-
+# 图像与原始字节码之间的转换；一个字节(占8位)可以表示0到255的整数
 # Make an array of 120,000 random bytes.
 randomByteArray = bytearray(os.urandom(120000))
 flatNumpyArray = numpy.array(randomByteArray)

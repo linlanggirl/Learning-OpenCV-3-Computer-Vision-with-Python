@@ -3,7 +3,7 @@ import numpy as np
 
 image = cv2.imread('MyPic.png')
 
-image[0, 0] = 255
+image[0, 0] = 255  # 修改单个像素值
 cv2.imshow("w1", image)
 
 subim=image[100:200,100:200]
