@@ -5,8 +5,10 @@ def onMouse(event, x, y, flags, param):
     global clicked
     if event == cv2.EVENT_LBUTTONUP:
         clicked = True
-
-cameraCapture = cv2.VideoCapture(0)
+# namedWindow()指定窗口名创建
+# imshow()显示
+# destoryWindow()销毁窗口
+cameraCapture = cv2.VideoCapture(0)  # 获取摄像头
 cv2.namedWindow('MyWindow')
 cv2.setMouseCallback('MyWindow', onMouse)
 

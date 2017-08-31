@@ -1,6 +1,6 @@
 import cv2
-
-cameraCapture = cv2.VideoCapture(0)
+# 捕获摄像头10秒的视频信息，并将其写入一个AVI文件中
+cameraCapture = cv2.VideoCapture(0)  # 获取摄像头
 fps = 30 # an assumption
 size = (int(cameraCapture.get(cv2.CAP_PROP_FRAME_WIDTH)),
         int(cameraCapture.get(cv2.CAP_PROP_FRAME_HEIGHT)))
