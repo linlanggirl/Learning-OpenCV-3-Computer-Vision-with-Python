@@ -10,9 +10,9 @@ def onMouse(event, x, y, flags, param):
 # destoryWindow()销毁窗口
 cameraCapture = cv2.VideoCapture(0)  # 获取摄像头
 cv2.namedWindow('MyWindow')
-cv2.setMouseCallback('MyWindow', onMouse)
+cv2.setMouseCallback('MyWindow', onMouse)   # setMouseCallback鼠标回掉函数
 
-print 'Showing camera feed. Click window or press any key to stop.'
+print('Showing camera feed. Click window or press any key to stop.')
 success, frame = cameraCapture.read()
 while cv2.waitKey(1) == -1 and not clicked:
     if frame is not None:
