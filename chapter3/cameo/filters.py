@@ -94,12 +94,12 @@ def blend(foregroundSrc, backgroundSrc, dst, alphaMask):
 
 def strokeEdges(src, dst, blurKsize = 7, edgeKsize = 5):
     if blurKsize >= 3:
-        blurredSrc = cv2.medianBlur(src, blurKsize)
-        graySrc = cv2.cvtColor(blurredSrc, cv2.COLOR_BGR2GRAY)
+        blurredSrc = cv2.medianBlur(src, blurKsize)  # （低通滤波器）模糊滤波器
+        graySrc = cv2.cvtColor(blurredSrc, cv2.COLOR_BGR2GRAY)  # 将彩色图像转化为灰度图像
     else:
         graySrc = cv2.cvtColor(src, cv2.COLOR_BGR2GRAY)
-    cv2.Laplacian(graySrc, cv2.CV_8U, graySrc, ksize = edgeKsize)
-    normalizedInverseAlpha = (1.0 / 255) * (255 - graySrc)
+    cv2.Laplacian(graySrc, cv2.CV_8U, graySrc, ksize = edgeKsize)  # 边缘检测函数
+    normalizedInverseAlpha = (1.0 / 255) * (255 - graySrc)  # 归一化
     channels = cv2.split(src)
     for channel in channels:
         channel[:] = channel * normalizedInverseAlpha
@@ -207,7 +207,7 @@ class BGRVelviaCurveFilter(BGRCurveFilter):
             dtype = dtype)
 
 
-class VConvolutionFilter(object):
+class VConvolutionFilter(object):  # 一般的卷积滤波器
     """A filter that applies a convolution to V (or all of BGR)."""
     
     def __init__(self, kernel):
@@ -217,7 +217,7 @@ class VConvolutionFilter(object):
         """Apply the filter with a BGR or gray source/destination."""
         cv2.filter2D(src, -1, self._kernel, dst)
 
-class BlurFilter(VConvolutionFilter):
+class BlurFilter(VConvolutionFilter):  # 模糊
     """A blur filter with a 2-pixel radius."""
     
     def __init__(self):
@@ -228,7 +228,7 @@ class BlurFilter(VConvolutionFilter):
                               [0.04, 0.04, 0.04, 0.04, 0.04]])
         VConvolutionFilter.__init__(self, kernel)
 
-class SharpenFilter(VConvolutionFilter):
+class SharpenFilter(VConvolutionFilter):  # 锐化
     """A sharpen filter with a 1-pixel radius."""
     
     def __init__(self):
@@ -237,7 +237,7 @@ class SharpenFilter(VConvolutionFilter):
                               [-1, -1, -1]])
         VConvolutionFilter.__init__(self, kernel)
 
-class FindEdgesFilter(VConvolutionFilter):
+class FindEdgesFilter(VConvolutionFilter):  # 边缘检测
     """An edge-finding filter with a 1-pixel radius."""
     
     def __init__(self):
@@ -246,7 +246,7 @@ class FindEdgesFilter(VConvolutionFilter):
                               [-1, -1, -1]])
         VConvolutionFilter.__init__(self, kernel)
 
-class EmbossFilter(VConvolutionFilter):
+class EmbossFilter(VConvolutionFilter):  # 模糊 + 锐化
     """An emboss filter with a 1-pixel radius."""
     
     def __init__(self):
