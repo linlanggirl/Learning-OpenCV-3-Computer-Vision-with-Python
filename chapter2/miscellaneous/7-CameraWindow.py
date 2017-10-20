@@ -18,5 +18,5 @@ while cv2.waitKey(1) == -1 and not clicked:
     if frame is not None:
         cv2.imshow('MyWindow', frame)
     success, frame = cameraCapture.read()
-
+cameraCapture.release()  # 停止捕获摄像头
 cv2.destroyWindow('MyWindow')
